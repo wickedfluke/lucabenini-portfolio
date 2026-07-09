@@ -1,0 +1,51 @@
+<section class="view">
+  <p class="eyebrow">Unit Dossier // Classified</p>
+  <h1 class="page-title glitch" data-text="About Me">About Me</h1>
+  <p class="page-lede">
+    A record of who I am, what I've been trained on, and where I've operated.
+  </p>
+
+  <div class="grid">
+    <app-frame label="Profile" index="A-01" class="span-2">
+      <dl class="profile-list">
+        @for (field of profile; track field.label) {
+          <div class="profile-row">
+            <dt>{{ field.label }}</dt>
+            <dd>{{ field.value }}</dd>
+          </div>
+        }
+      </dl>
+    </app-frame>
+
+    <app-frame label="Proficiency Readouts" index="A-02" class="span-2">
+      <div class="skills">
+        @for (skill of skills; track skill.name) {
+          <div class="skill-row" [style.--level]="skill.level + '%'" [style.--i]="$index">
+            <div class="skill-head">
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-value">{{ skill.level }}%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </app-frame>
+
+    <app-frame label="Operational History" index="A-03" class="span-4">
+      <ol class="timeline">
+        @for (entry of history; track entry.title) {
+          <li class="timeline-item">
+            <span class="timeline-year">{{ entry.year }}</span>
+            <div class="timeline-body">
+              <h3 class="timeline-title">{{ entry.title }}</h3>
+              <p class="timeline-org">{{ entry.org }}</p>
+              <p class="timeline-desc">{{ entry.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </app-frame>
+  </div>
+</section>

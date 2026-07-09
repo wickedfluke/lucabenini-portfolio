@@ -1,0 +1,55 @@
+<header class="topbar">
+  <a class="mark" routerLink="/" (click)="close()">
+    <span class="mark-glyph">⬡</span>
+    <span class="mark-text glitch" data-text="L13">L13</span>
+  </a>
+  <button
+    class="burger"
+    type="button"
+    [class.is-open]="isOpen"
+    (click)="toggle()"
+    [attr.aria-expanded]="isOpen"
+    aria-label="Toggle navigation"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="backdrop" [class.is-open]="isOpen" (click)="close()"></div>
+
+<nav class="sidebar" [class.is-open]="isOpen">
+  <div class="brand">
+    <span class="mark-glyph large">⬡</span>
+    <div class="brand-copy">
+      <span class="brand-title glitch" data-text="L13">L13</span>
+      <span class="brand-sub">ACCESS TERMINAL</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <ul class="links">
+    @for (link of links; track link.path) {
+      <li>
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          (click)="close()"
+        >
+          <span class="link-index">{{ link.index }}</span>
+          <span class="link-label">{{ link.label }}</span>
+          <span class="link-underline"></span>
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="rule"></div>
+
+  <div class="sys-readout">
+    <p><span class="dot"></span> STATUS: ONLINE</p>
+    <p>UNIT NO. 2137-B</p>
+    <p>SESSION: {{ links.length }} ROUTES LINKED</p>
+  </div>
+</nav>

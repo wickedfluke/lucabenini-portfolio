@@ -1,0 +1,27 @@
+<section class="view">
+  <p class="eyebrow">Communication Array // Long Range</p>
+  <h1 class="page-title glitch" data-text="Socials">Socials</h1>
+  <p class="page-lede">
+    Available channels for correspondence.
+  </p>
+
+  <app-frame label="Open Channels" index="C-00">
+    <ul class="channel-list">
+      @for (channel of channels; track channel.index) {
+        <li class="channel-row">
+          <span class="channel-index">{{ channel.index }}</span>
+
+          <div class="channel-info">
+            <div class="channel-head">
+              <span class="channel-platform">{{ channel.platform }}</span>
+              <span class="channel-handle">{{ channel.handle }}</span>
+            </div>
+            <p class="channel-desc">{{ channel.description }}</p>
+          </div>
+
+          <a class="l13-btn" [href]="channel.url" target="_blank" rel="noopener">Connect</a>
+        </li>
+      }
+    </ul>
+  </app-frame>
+</section>

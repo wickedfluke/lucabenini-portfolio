@@ -1,0 +1,287 @@
+/* ==========================================================================
+   L13 Terminal — global design system
+   Palette & type inspired by NieR:Automata's menu UI: dark teal-black backdrop,
+   pale aqua text, aquamarine accents, thin hairline rules, notched corners.
+   ========================================================================== */
+
+:root {
+  --bg: #081411;
+  --bg-deep: #05090a;
+  --panel: #0e1e1b;
+  --panel-alt: #122824;
+
+  --ink: #dcf1ec;
+  --ink-dim: #85ada4;
+  --ink-faint: #4f6d66;
+
+  --gold: #2bbfa4;
+  --gold-bright: #5ee8cd;
+  --gold-dim: #1f7d6c;
+
+  --line: rgba(220, 241, 236, 0.22);
+  --line-strong: rgba(220, 241, 236, 0.4);
+  --line-gold: rgba(43, 191, 164, 0.55);
+
+  --danger: #a1503f;
+  --ok: #9fae4f;
+
+  --font-display: "Rajdhani", "Segoe UI", sans-serif;
+  --font-mono: "Share Tech Mono", "Consolas", monospace;
+
+  --radius: 2px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(43, 191, 164, 0.05), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(43, 191, 164, 0.04), transparent 45%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+a {
+  color: var(--gold-bright);
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   Layout helpers
+   ------------------------------------------------------------------------- */
+
+.view {
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.page-title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.02;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-lede {
+  max-width: 42rem;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Glitch text — brief RGB-split flicker on hover / periodic tick
+   ------------------------------------------------------------------------- */
+
+.glitch {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  animation: glitch-flicker 420ms steps(2, jump-none);
+}
+
+.glitch:hover::before {
+  color: #2bbfa4;
+  transform: translate(2px, 0);
+  mix-blend-mode: screen;
+}
+
+.glitch:hover::after {
+  color: #c96f9e;
+  transform: translate(-2px, 0);
+  mix-blend-mode: screen;
+}
+
+@keyframes glitch-flicker {
+  0% { opacity: 0.8; clip-path: inset(10% 0 60% 0); }
+  20% { opacity: 0.6; clip-path: inset(60% 0 5% 0); }
+  40% { opacity: 0.8; clip-path: inset(20% 0 40% 0); }
+  60% { opacity: 0.4; clip-path: inset(80% 0 2% 0); }
+  80% { opacity: 0.7; clip-path: inset(5% 0 70% 0); }
+  100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+}
+
+/* -------------------------------------------------------------------------
+   Notched panel frame (see FrameComponent) — shared corner-bracket look
+   ------------------------------------------------------------------------- */
+
+.l13-frame {
+  position: relative;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
+  border: 1px solid var(--line);
+  padding: 1.75rem;
+}
+
+.l13-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(220, 241, 236, 0.03), transparent 40%);
+}
+
+.frame-corner {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  pointer-events: none;
+}
+
+.frame-corner.tl { top: -1px; left: -1px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.frame-corner.tr { top: -1px; right: -1px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.frame-corner.bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.frame-corner.br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+.frame-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.frame-index {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.frame-title {
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+}
+
+.frame-header .frame-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* -------------------------------------------------------------------------
+   Buttons / links styled as terminal actions
+   ------------------------------------------------------------------------- */
+
+.l13-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--line-gold);
+  background: rgba(43, 191, 164, 0.06);
+  color: var(--gold-bright);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.l13-btn::before {
+  content: "▸";
+  color: var(--gold);
+}
+
+.l13-btn:hover {
+  background: rgba(43, 191, 164, 0.16);
+  border-color: var(--gold-bright);
+  letter-spacing: 0.24em;
+}
+
+/* -------------------------------------------------------------------------
+   Status tags (used on Projects)
+   ------------------------------------------------------------------------- */
+
+.status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+}
+
+.status-tag.is-active { color: var(--ok); border-color: rgba(159, 174, 79, 0.5); }
+.status-tag.is-progress { color: var(--gold-bright); border-color: var(--line-gold); }
+.status-tag.is-archived { color: var(--ink-faint); }
+
+/* -------------------------------------------------------------------------
+   Scrollbar — keep it in theme on webkit
+   ------------------------------------------------------------------------- */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+@media (max-width: 600px) {
+  .l13-frame { padding: 1.25rem; }
+}

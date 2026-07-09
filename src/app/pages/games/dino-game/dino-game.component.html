@@ -1,0 +1,20 @@
+<div class="runner">
+  <canvas
+    #gameCanvas
+    width="640"
+    height="180"
+    class="runner-canvas"
+    (click)="handleAction()"
+  ></canvas>
+
+  @if (state !== 'playing') {
+    <div class="runner-overlay">
+      @if (state === 'idle') {
+        <p>PRESS SPACE OR TAP TO DEPLOY UNIT</p>
+      } @else {
+        <p>UNIT DESTROYED — SCORE {{ score }}</p>
+        <p class="runner-hint">PRESS SPACE TO REDEPLOY</p>
+      }
+    </div>
+  }
+</div>
