@@ -21,8 +21,15 @@
 
           <p class="project-desc">{{ project.description }}</p>
 
-          @if (project.link) {
-            <a class="l13-btn" [href]="project.link" target="_blank" rel="noopener">View Repository</a>
+          @if (project.link || project.deployLink) {
+            <div class="project-links">
+              @if (project.link) {
+                <a class="l13-btn" [href]="project.link" target="_blank" rel="noopener">View Repository</a>
+              }
+              @if (project.deployLink) {
+                <a class="l13-btn" [href]="project.deployLink" target="_blank" rel="noopener">Deploy to Koyeb</a>
+              }
+            </div>
           }
         </app-frame>
       }

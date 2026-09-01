@@ -10,6 +10,7 @@ interface Project {
   statusLabel: string;
   description: string;
   link?: string;
+  deployLink?: string;
 }
 
 interface ProjectCategory {
@@ -72,6 +73,17 @@ export class ProjectsComponent {
           status: 'active',
           statusLabel: 'Operational',
           description: "Uses the Spotify API to merge all of a user's playlists into one, refreshed daily.",
+          link: 'https://github.com/wickedfluke/playlistsyncher',
+          deployLink: 'https://app.koyeb.com/deploy?name=playlistsyncher&type=git&repository=wickedfluke%2Fplaylistsyncher&branch=main&builder=dockerfile&instance_type=free&regions=fra&instances_min=0&autoscaling_sleep_idle_delay=3900&env%5BMONGODB_URI%5D=%7B%7B+secret.MONGODB_URI+%7D%7D&env%5BSPOTIFY_CLIENT_ID%5D=%7B%7B+secret.SPOTIFY_CLIENT_ID+%7D%7D&env%5BSPOTIFY_CLIENT_SECRET%5D=%7B%7B+secret.SPOTIFY_CLIENT_SECRET+%7D%7D&env%5BSPOTIFY_REDIRECT_URI%5D=%7B%7B+secret.SPOTIFY_REDIRECT_URI+%7D%7D&env%5BYTMUSIC_JWT_SECRET%5D=%7B%7B+secret.YTMUSIC_JWT_SECRET+%7D%7D&env%5BYTMUSIC_OAUTH_CLIENT_ID%5D=%7B%7B+secret.YTMUSIC_OAUTH_CLIENT_ID+%7D%7D&env%5BYTMUSIC_OAUTH_CLIENT_SECRET%5D=%7B%7B+secret.YTMUSIC_OAUTH_CLIENT_SECRET+%7D%7D&env%5BYTMUSIC_SERVICE_URL%5D=http%3A%2F%2F127.0.0.1%3A8000&ports=3000%3Bhttp%3B%2F&hc_protocol%5B3000%5D=tcp&hc_grace_period%5B3000%5D=5&hc_interval%5B3000%5D=30&hc_restart_limit%5B3000%5D=3&hc_timeout%5B3000%5D=5&hc_path%5B3000%5D=%2F&hc_method%5B3000%5D=get',
+        },
+        {
+          index: 'W-07',
+          title: 'YouTube Music Playlist Aggregator',
+          status: 'active',
+          statusLabel: 'Operational',
+          description: "Uses the YouTube Music API to merge all of a user's playlists into one, refreshed daily.",
+          link: 'https://github.com/wickedfluke/playlistsyncher',
+          deployLink: 'https://app.koyeb.com/deploy?name=playlistsyncher&type=git&repository=wickedfluke%2Fplaylistsyncher&branch=main&builder=dockerfile&instance_type=free&regions=fra&instances_min=0&autoscaling_sleep_idle_delay=3900&env%5BMONGODB_URI%5D=%7B%7B+secret.MONGODB_URI+%7D%7D&env%5BSPOTIFY_CLIENT_ID%5D=%7B%7B+secret.SPOTIFY_CLIENT_ID+%7D%7D&env%5BSPOTIFY_CLIENT_SECRET%5D=%7B%7B+secret.SPOTIFY_CLIENT_SECRET+%7D%7D&env%5BSPOTIFY_REDIRECT_URI%5D=%7B%7B+secret.SPOTIFY_REDIRECT_URI+%7D%7D&env%5BYTMUSIC_JWT_SECRET%5D=%7B%7B+secret.YTMUSIC_JWT_SECRET+%7D%7D&env%5BYTMUSIC_OAUTH_CLIENT_ID%5D=%7B%7B+secret.YTMUSIC_OAUTH_CLIENT_ID+%7D%7D&env%5BYTMUSIC_OAUTH_CLIENT_SECRET%5D=%7B%7B+secret.YTMUSIC_OAUTH_CLIENT_SECRET+%7D%7D&env%5BYTMUSIC_SERVICE_URL%5D=http%3A%2F%2F127.0.0.1%3A8000&ports=3000%3Bhttp%3B%2F&hc_protocol%5B3000%5D=tcp&hc_grace_period%5B3000%5D=5&hc_interval%5B3000%5D=30&hc_restart_limit%5B3000%5D=3&hc_timeout%5B3000%5D=5&hc_path%5B3000%5D=%2F&hc_method%5B3000%5D=get',
         },
       ],
     },
@@ -195,6 +207,13 @@ export class ProjectsComponent {
           status: 'archived',
           statusLabel: 'Archived',
           description: "Monitors a phone's charging state to detect and alert on power outages at home.",
+        },
+        {
+          index: 'S-04',
+          title: 'Instagram Follower Tracker',
+          status: 'active',
+          statusLabel: 'Operational',
+          description: 'Weekly check of an Instagram profile\'s followers, emailing a report of new and lost followers.',
         },
       ],
     },

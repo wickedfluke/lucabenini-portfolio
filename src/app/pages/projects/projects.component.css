@@ -70,6 +70,13 @@
   overflow: hidden;
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
 @media (max-width: 900px) {
   .project-grid {
     grid-template-columns: 1fr;
