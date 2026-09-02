@@ -221,6 +221,7 @@ export class ProjectsComponent {
           status: 'archived',
           statusLabel: 'Archived',
           description: 'Throwaway tool that polled TicketWeb pages for ticket availability, with a local status UI and automatic email alerts.',
+          link: 'https://github.com/wickedfluke/liveNationTicketMonitor',
         },
       ],
     },
