@@ -215,6 +215,13 @@ export class ProjectsComponent {
           statusLabel: 'Operational',
           description: 'Weekly check of an Instagram profile\'s followers, emailing a report of new and lost followers.',
         },
+        {
+          index: 'S-05',
+          title: 'Ticket Monitor',
+          status: 'archived',
+          statusLabel: 'Archived',
+          description: 'Throwaway tool that polled TicketWeb pages for ticket availability, with a local status UI and automatic email alerts.',
+        },
       ],
     },
   ];
